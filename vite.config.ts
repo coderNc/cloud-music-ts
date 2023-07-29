@@ -7,8 +7,23 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   resolve: {
+    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'],
     alias: {
       '@': path.resolve(__dirname, 'src')
     }
+  },
+  server: {
+    proxy: {
+      // 选项写法
+      '/api': {
+        target:
+          'https://service-a7757d8i-1301789753.gz.apigw.tencentcs.com/release',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
+  },
+  define: {
+    'process.env': process.env
   }
 })

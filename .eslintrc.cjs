@@ -25,6 +25,12 @@ module.exports = {
     ],
     '@typescript-eslint/no-non-null-assertion': 0,
     '@typescript-eslint/no-unsafe-return': 0,
-    '@typescript-eslint/no-unsafe-argument': 0
+    '@typescript-eslint/no-unsafe-argument': 0,
+    '@typescript-eslint/no-unsafe-assignment': 0,
+    '@typescript-eslint/no-floating-promises': 0,
+    '@typescript-eslint/no-unsafe-member-access': 0,
+    '@typescript-eslint/restrict-plus-operands': 0,
+    '@typescript-eslint/no-empty-function': 0,
+    '@typescript-eslint/no-misused-promises': 0
   }
 }

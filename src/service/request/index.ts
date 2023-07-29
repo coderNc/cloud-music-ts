@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { AxiosInstance } from 'axios'
+import type { AxiosInstance, AxiosRequestConfig } from 'axios'
 import type { RequestConfig, Interceptors } from './type'
 
 // 拦截器: 蒙版Loading/token/修改配置
@@ -24,7 +24,6 @@ class Request {
     // 每个instance实例都添加拦截器
     this.instance.interceptors.request.use(
       (config) => {
-        // loading/token
         return config
       },
       (err) => {
@@ -33,7 +32,7 @@ class Request {
     )
     this.instance.interceptors.response.use(
       (res) => {
-        return res.data
+        return res
       },
       (err) => {
         return err
@@ -42,7 +41,7 @@ class Request {
 
     // 针对特定的Request实例添加拦截器
     this.instance.interceptors.request.use(
-      // this.interceptors?.requestSuccessFn,
+      this.interceptors?.requestSuccessFn,
       this.interceptors?.requestFailureFn
     )
     this.instance.interceptors.response.use(
@@ -76,17 +75,17 @@ class Request {
     })
   }
 
-  get<T = any>(config: RequestConfig<T>) {
-    return this.request({ ...config, method: 'GET' })
+  get<T = any>(url: string, config?: RequestConfig<T>) {
+    return this.request({ ...config, url, method: 'GET' })
   }
-  post<T = any>(config: RequestConfig<T>) {
-    return this.request({ ...config, method: 'POST' })
+  post<T = any>(url: string, data: any, config: RequestConfig<T>) {
+    return this.request({ ...config, url, data, method: 'POST' })
   }
-  delete<T = any>(config: RequestConfig<T>) {
-    return this.request({ ...config, method: 'DELETE' })
+  delete<T = any>(url: string, config: RequestConfig<T>) {
+    return this.request({ ...config, url, method: 'DELETE' })
   }
-  patch<T = any>(config: RequestConfig<T>) {
-    return this.request({ ...config, method: 'PATCH' })
+  patch<T = any>(url: string, data: any, config: RequestConfig<T>) {
+    return this.request({ ...config, url, data, method: 'PATCH' })
   }
 }
 
