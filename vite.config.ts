@@ -16,8 +16,7 @@ export default defineConfig({
     proxy: {
       // 选项写法
       '/api': {
-        target:
-          'https://service-a7757d8i-1301789753.gz.apigw.tencentcs.com/release',
+        target: 'http://62.234.48.139:3000/',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       }
