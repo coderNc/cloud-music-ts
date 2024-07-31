@@ -15,7 +15,8 @@ export default {
         xl: ['24px', '32px']
       },
       width: {
-        1100: '1100px'
+        1100: '1100px',
+        310: '310px'
       },
       backgroundPosition: {
         '00': '0px 0px'
