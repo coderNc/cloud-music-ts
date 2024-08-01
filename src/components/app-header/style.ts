@@ -119,3 +119,10 @@ export const HeaderRight = styled.div`
     }
   }
 `
+export const SubNav = styled.div`
+  width: 100%;
+  height: 35px;
+  box-sizing: border-box;
+  background-color: #c20c0c;
+  border-bottom: 1px solid #a40011;
+`
