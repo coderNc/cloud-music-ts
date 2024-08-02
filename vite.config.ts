@@ -16,7 +16,8 @@ export default defineConfig({
     proxy: {
       // 选项写法
       '/api': {
-        target: 'http://62.234.48.139:3000/',
+        // target: 'http://62.234.48.139:3000/',
+        target: 'http://www.niuchao.top:3000/',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       }
