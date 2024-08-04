@@ -8,7 +8,7 @@ import { createQrCode, getQrCodeKey, checkQrCodeStatus } from '@/service/login'
 
 interface IProps {
   open: boolean
-  handleOk?: () => void
+  handleOk?: (data: any) => void
   handleCancel?: () => void
   children?: ReactNode
 }
@@ -60,14 +60,14 @@ const LoginModal: FC<IProps> = ({ open, handleCancel, handleOk }) => {
           clearTimeout(timer)
           timer = setTimeout(() => pollAPI(key), 1000) // 1秒后再次调用轮询函数
         } else {
+          console.log(res)
           document.cookie = res.cookie
+          handleOk?.(res)
         }
-        // 如果需要继续轮询，可以在这里递归调用 pollAPI() 函数
       })
       .catch((error) => {
         // 在这里处理错误
         console.error(error)
-
         // 如果需要继续轮询，可以在这里递归调用 pollAPI() 函数
         setTimeout(pollAPI, 1000) // 1秒后再次调用轮询函数
       })
@@ -115,7 +115,6 @@ const LoginModal: FC<IProps> = ({ open, handleCancel, handleOk }) => {
         )}
       >
         <ModalWrapper>
-          <button onClick={createKey}>生成key</button>
           <QRCode value={qrCodeUrl} />
         </ModalWrapper>
       </Modal>

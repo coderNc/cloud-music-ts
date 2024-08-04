@@ -1,10 +1,10 @@
-import { getTopBanners } from '@/service/recommend'
 import { Image, Carousel } from 'antd'
-import React, { memo, useEffect, useState } from 'react'
+import React, { memo, useState } from 'react'
+import { useAppSelector } from '@/store'
 
 const Banner = memo(() => {
-  const [banners, setBanners] = useState<any[]>([])
   const [curBanner, setCurBanner] = useState<string>('')
+  const { banners } = useAppSelector((state) => state.recommend)
 
   const contentStyle: React.CSSProperties = {
     height: '130px',
@@ -13,12 +13,6 @@ const Banner = memo(() => {
     textAlign: 'center',
     background: '#364d79'
   }
-
-  useEffect(() => {
-    getTopBanners().then((res) => {
-      setBanners(res.banners)
-    })
-  }, [])
 
   const beforeChange = (current: number, next: number) => {
     const url = banners[next].imageUrl + '?imageView&blur=40x20'
@@ -34,9 +28,14 @@ const Banner = memo(() => {
         <div className="h-full w-3/4">
           <Carousel autoplay arrows beforeChange={beforeChange}>
             {banners.map((item) => (
-              <div style={contentStyle} key={item.imageUrl}>
+              <a
+                className="block h-[130px] text-center leading-[130px] text-[#fff]"
+                href={item.url ?? '#'}
+                target="_blank"
+                key={item.imageUrl}
+              >
                 <Image src={item.imageUrl} />
-              </div>
+              </a>
             ))}
           </Carousel>
         </div>

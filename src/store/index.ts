@@ -7,10 +7,14 @@ import {
 } from 'react-redux'
 
 import counterReducer from './modules/counter'
+import userReducer from './modules/user'
+import recommendReducer from './modules/recommend'
 
 const store = configureStore({
   reducer: {
-    counter: counterReducer
+    counter: counterReducer,
+    user: userReducer,
+    recommend: recommendReducer
   }
 })
 
