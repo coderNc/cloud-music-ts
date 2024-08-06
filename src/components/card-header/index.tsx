@@ -12,21 +12,19 @@ interface ICardHeaderProps {
 const CardHeader: FC<ICardHeaderProps> = (props) => {
   const { title, titlePath, keyword, morePath } = props || {}
   return (
-    <div className="flex h-[35px] items-center justify-between border-b-2 border-red-500">
+    <div className="mb-[30px] flex h-[35px] items-center justify-between border-b-2 border-red-500">
       <div className="flex h-full items-center justify-start">
         <div className="h-full w-[30px] bg-sprite_02 bg-[position:58%_36%]"></div>
         <div className="text-[20px] leading-[28px]">
           {titlePath ? <a href={titlePath}>{title}</a> : title}
         </div>
-        <div className="keyword">
+        <div className="flex h-full items-center justify-start">
           {keyword?.map((item, index) => {
             return (
-              <>
-                <a key={index} className="m-[10px] text-[12px] text-[#666]">
-                  {item}
-                </a>
+              <div key={index}>
+                <a className="m-[10px] text-[12px] text-[#666]">{item}</a>
                 {index === keyword.length - 1 ? null : <span>|</span>}
-              </>
+              </div>
             )
           })}
         </div>

@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 import sprite_01 from '@/assets/img/sprite_01.png'
+import sprite_02 from '@/assets/img/sprite_02.png'
+import download from '@/assets/img/download.png'
 export const HeaderWrapper = styled.div`
   height: 75px;
   background-color: #242424;
