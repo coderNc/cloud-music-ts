@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
 import { getHotRecommend, getTopBanners } from '@/service/recommend'
+import { Banner, HotRecommend } from '@/utils/types/recommend'
 
 export const fetchRecommendDataAction = createAsyncThunk(
   'recommend',
@@ -12,8 +13,8 @@ export const fetchRecommendDataAction = createAsyncThunk(
 )
 
 interface RecommendState {
-  banners: any[]
-  hotRecommends: any[]
+  banners: Banner[]
+  hotRecommends: HotRecommend[]
   newAlbums: any[]
   rankings: any[]
   settleSingers: any[]
@@ -31,10 +32,13 @@ const recommendSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    changeBannersAction(state, { payload }) {
+    changeBannersAction(state, { payload }: PayloadAction<Banner[]>) {
       state.banners = payload
     },
-    changeHotRecommendAction(state, { payload }) {
+    changeHotRecommendAction(
+      state,
+      { payload }: PayloadAction<HotRecommend[]>
+    ) {
       state.hotRecommends = payload
     },
     changeNewAlbumsAction(state, { payload }) {
