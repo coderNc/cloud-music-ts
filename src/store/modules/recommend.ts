@@ -1,10 +1,12 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
 import {
   getHotRecommend,
+  getNewAlbum,
   getPersonalRecommend,
   getTopBanners
 } from '@/service/recommend'
 import {
+  Albums,
   Banner,
   HotRecommend,
   PersonalRecommend
@@ -16,9 +18,11 @@ export const fetchRecommendDataAction = createAsyncThunk(
     const bannerRes = await getTopBanners()
     const hotRecommendRes = await getHotRecommend()
     const personalRecommendRes = await getPersonalRecommend()
+    const newAlbumRes = await getNewAlbum()
     dispatch(changeBannersAction(bannerRes.banners))
     dispatch(changeHotRecommendAction(hotRecommendRes.result))
     dispatch(changePersonalRecommendAction(personalRecommendRes.recommend))
+    dispatch(changeNewAlbumsAction(newAlbumRes.albums))
   }
 )
 
@@ -26,7 +30,7 @@ interface RecommendState {
   banners: Banner[]
   hotRecommends: HotRecommend[]
   personalRecommends: PersonalRecommend[]
-  newAlbums: any[]
+  newAlbums: Albums[]
   rankings: any[]
   settleSingers: any[]
 }
@@ -59,7 +63,7 @@ const recommendSlice = createSlice({
     ) {
       state.personalRecommends = payload
     },
-    changeNewAlbumsAction(state, { payload }) {
+    changeNewAlbumsAction(state, { payload }: PayloadAction<Albums[]>) {
       state.newAlbums = payload
     },
     changeRankingsAction(state, { payload }) {

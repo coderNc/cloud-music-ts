@@ -97,3 +97,56 @@ export interface Creator {
   signature: string
   authority: number
 }
+
+export interface NewAlbumRes {
+  albums: Albums[]
+  code: number
+  total: number
+}
+
+export interface Artists {
+  img1v1Id: number
+  topicPerson: number
+  picId: number
+  briefDesc: string
+  musicSize: number
+  albumSize: number
+  picUrl: string
+  img1v1Url: string
+  followed: boolean
+  trans: string
+  alias: string[]
+  name: string
+  id: number
+  img1v1Id_str: string
+}
+
+export interface Albums {
+  songs: string[]
+  paid: boolean
+  onSale: boolean
+  mark: number
+  awardTags: null
+  artists: Artists[]
+  copyrightId: number
+  picId: number
+  artist: Artists
+  publishTime: number
+  company: string
+  briefDesc: string
+  picUrl: string
+  commentThreadId: string
+  blurPicUrl: string
+  companyId: number
+  pic: number
+  status: number
+  subType: string
+  alias: string[]
+  description: string
+  tags: string
+  name: string
+  id: number
+  type: string
+  size: number
+  picId_str: string
+}

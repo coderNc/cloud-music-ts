@@ -4,3 +4,7 @@ export const formatToWan = (num: number): string => {
   const wanValue = (num / 10000).toFixed(0)
   return `${wanValue}万`
 }
+
+export function getImageSize(imgUrl: string, width = 40, height = width) {
+  return `${imgUrl}?param=${width}x${height}`
+}

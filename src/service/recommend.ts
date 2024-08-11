@@ -1,6 +1,7 @@
 import {
   BannersRes,
   HotRecommendRes,
+  NewAlbumRes,
   PersonalRecommendRes
 } from '@/utils/types/recommend'
 import request from './service'
@@ -18,7 +19,7 @@ export function getPersonalRecommend() {
 }
 
 export function getNewAlbum(offset = 0, limit = 10) {
-  return request.get('/album/new', {
+  return request.get<NewAlbumRes>('/album/new', {
     params: {
       offset,
       limit
