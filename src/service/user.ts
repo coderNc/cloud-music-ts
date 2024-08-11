@@ -11,3 +11,8 @@ export const getUserStatus = () => {
 export const getUserDetail = (uid: number) => {
   return request.get('/user/detail', { params: { uid } })
 }
+
+// 私信和通知接口
+export const getPlCount = () => {
+  return request.get('/pl/count')
+}

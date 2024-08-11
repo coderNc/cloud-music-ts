@@ -1,10 +1,11 @@
-import { getAccount, getUserDetail } from '@/service/user'
+import { getAccount, getPlCount, getUserDetail } from '@/service/user'
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
 
 export const fetchUserInfoAction = createAsyncThunk(
   'user/fetchUserInfo',
   async (arg, { dispatch, getState }) => {
     const res = await getAccount()
+    const plRes = await getPlCount()
     const detailRes = await getUserDetail(res.profile.userId)
     dispatch(changeAccountAction(res))
     dispatch(changeUserDetailAction(detailRes))

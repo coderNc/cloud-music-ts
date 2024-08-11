@@ -8,7 +8,7 @@ const Recommend = memo(() => {
   return (
     <div>
       <Banner />
-      <div className="m-auto flex h-[1000px] w-1100 items-center justify-start">
+      <div className="m-auto flex h-full w-1100 items-center justify-start">
         <div className="h-full w-3/4 p-[20px]">
           <HotRecommend />
           <PersonalRecommend />
