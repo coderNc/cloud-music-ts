@@ -1,4 +1,8 @@
-import { BannersRes, HotRecommendRes } from '@/utils/types/recommend'
+import {
+  BannersRes,
+  HotRecommendRes,
+  PersonalRecommendRes
+} from '@/utils/types/recommend'
 import request from './service'
 
 export const getTopBanners = () => {
@@ -7,6 +11,10 @@ export const getTopBanners = () => {
 
 export function getHotRecommend() {
   return request.get<HotRecommendRes>('/personalized')
+}
+
+export function getPersonalRecommend() {
+  return request.get<PersonalRecommendRes>('/recommend/resource')
 }
 
 export function getNewAlbum(offset = 0, limit = 10) {

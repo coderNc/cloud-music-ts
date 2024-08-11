@@ -2,17 +2,24 @@ import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
 import { formatToWan } from '@/utils'
 import { useNavigate } from 'react-router-dom'
-import { HotRecommend } from '@/utils/types/recommend'
 
 interface ICardHeaderProps {
-  cardInfo: HotRecommend
+  cardInfo: {
+    picUrl: string
+    name: string
+    playCount?: number
+    playcount?: number
+    id: number
+  }
   children?: ReactNode
 }
 
 const CardItem: FC<ICardHeaderProps> = (props) => {
   const navigate = useNavigate()
   const { cardInfo } = props || {}
-  const { picUrl, name, playCount, id } = cardInfo || {}
+  const { picUrl, name, playCount, playcount, id } = cardInfo || {}
+  const count = playCount || playcount
+
   const gotoPlayList = () => {
     navigate(`/discover/playlist/?id=${id}`)
   }
@@ -22,7 +29,9 @@ const CardItem: FC<ICardHeaderProps> = (props) => {
         <img src={picUrl} alt={''} className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50"></div>
         <div className="absolute bottom-0 left-0 p-4 opacity-100">
-          <p className="text-[12px] text-[#b9b9b9]">{formatToWan(playCount)}</p>
+          <p className="text-[12px] text-[#b9b9b9]">
+            {count && formatToWan(count)}
+          </p>
         </div>
         <div className="absolute bottom-0 right-0 p-4 opacity-50">
           <button className="rounded-full bg-white p-2">

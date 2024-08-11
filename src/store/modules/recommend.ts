@@ -1,20 +1,31 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
-import { getHotRecommend, getTopBanners } from '@/service/recommend'
-import { Banner, HotRecommend } from '@/utils/types/recommend'
+import {
+  getHotRecommend,
+  getPersonalRecommend,
+  getTopBanners
+} from '@/service/recommend'
+import {
+  Banner,
+  HotRecommend,
+  PersonalRecommend
+} from '@/utils/types/recommend'
 
 export const fetchRecommendDataAction = createAsyncThunk(
   'recommend',
   async (arg, { dispatch, getState }) => {
     const bannerRes = await getTopBanners()
     const hotRecommendRes = await getHotRecommend()
+    const personalRecommendRes = await getPersonalRecommend()
     dispatch(changeBannersAction(bannerRes.banners))
     dispatch(changeHotRecommendAction(hotRecommendRes.result))
+    dispatch(changePersonalRecommendAction(personalRecommendRes.recommend))
   }
 )
 
 interface RecommendState {
   banners: Banner[]
   hotRecommends: HotRecommend[]
+  personalRecommends: PersonalRecommend[]
   newAlbums: any[]
   rankings: any[]
   settleSingers: any[]
@@ -23,6 +34,7 @@ interface RecommendState {
 const initialState: RecommendState = {
   banners: [],
   hotRecommends: [],
+  personalRecommends: [],
   newAlbums: [],
   rankings: [],
   settleSingers: []
@@ -41,6 +53,12 @@ const recommendSlice = createSlice({
     ) {
       state.hotRecommends = payload
     },
+    changePersonalRecommendAction(
+      state,
+      { payload }: PayloadAction<PersonalRecommend[]>
+    ) {
+      state.personalRecommends = payload
+    },
     changeNewAlbumsAction(state, { payload }) {
       state.newAlbums = payload
     },
@@ -56,6 +74,7 @@ const recommendSlice = createSlice({
 export const {
   changeBannersAction,
   changeHotRecommendAction,
+  changePersonalRecommendAction,
   changeNewAlbumsAction,
   changeRankingsAction,
   changeSettleSingerAction

@@ -50,3 +50,50 @@ export interface BannersRes {
   banners: Banner[]
   code: number
 }
+export interface PersonalRecommendRes {
+  recommend: PersonalRecommend[]
+  code: number
+}
+
+export interface PersonalRecommend {
+  id: number
+  type: number
+  name: string
+  copywriter: string
+  picUrl: string
+  playcount: number
+  createTime: number
+  creator: Creator
+  trackCount: number
+  userId: number
+  alg: string
+}
+
+export interface Creator {
+  accountStatus: number
+  vipType: number
+  province: number
+  avatarUrl: string
+  authStatus: number
+  userType: number
+  nickname: string
+  gender: number
+  birthday: number
+  city: number
+  backgroundUrl: string
+  remarkName: null
+  avatarImgId: number
+  backgroundImgId: number
+  detailDescription: string
+  defaultAvatar: boolean
+  expertTags: null
+  djStatus: number
+  followed: boolean
+  mutual: boolean
+  avatarImgIdStr: string
+  backgroundImgIdStr: string
+  description: string
+  userId: number
+  signature: string
+  authority: number
+}
